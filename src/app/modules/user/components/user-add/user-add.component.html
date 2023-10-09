@@ -1,0 +1,74 @@
+<div class="modal-content">
+    <div class="modal-header" id="kt_modal_add_user_header">
+        <h2 class="fw-bolder">Agregar Usuario</h2>
+        <span class="spinner-border spinner-border-sm align-middle ms-2" *ngIf="isLoading | async"></span>
+        <div class="btn btn-icon btn-sm btn-active-icon-primary" (click)="modal.dismiss()">
+            <span class="svg-icon svg-icon-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                </svg>
+            </span>
+        </div>
+    </div>
+    <div class="modal-body scroll-y mx-3 my-3">
+        <form id="kt_modal_add_user_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
+            <div class="d-flex flex-column scroll-y me-n7 pe-7">
+                <div class="fv-row mb-7">
+                    <label class="d-block fw-bold fs-6 mb-5">Foto perfil</label>
+                    <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
+                        <div class="image-input-wrapper w-125px h-125px" [style]="{'background-image': 'url('+IMAGEN_PREVISUALIZADA+')'}"></div>
+                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="" data-bs-original-title="Change avatar">
+                            <i class="bi bi-pencil-fill fs-7"></i>
+                            <input type="file" name="avatar" accept=".png, .jpg, .jpeg" (change)="processAvatar($event)">
+                            <input type="hidden" name="avatar_remove">
+                        </label>
+                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="" data-bs-original-title="Cancel avatar">
+                            <i class="bi bi-x fs-2"></i>
+                        </span>
+                        <!-- <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="" data-bs-original-title="Remove avatar">
+                            <i class="bi bi-x fs-2"></i>
+                        </span> -->
+                    </div>
+                    <div class="form-text">Tipo de archivos permitidos: png, jpg, jpeg.</div>
+                </div>
+                <div class="fv-row mb-7 fv-plugins-icon-container">
+                    <label class="required fw-bold fs-6 mb-2">Nombre completo</label>
+                    <input type="text" name="name" [(ngModel)]="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre completo">
+                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+                <div class="fv-row mb-7 fv-plugins-icon-container">
+                    <label class="required fw-bold fs-6 mb-2">Apellidos</label>
+                    <input type="text" name="surname" [(ngModel)]="surname" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nombre completo">
+                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+                <div class="fv-row mb-7 fv-plugins-icon-container">
+                    <label class="required fw-bold fs-6 mb-2">Correo electrónico</label>
+                    <input type="email" name="email" [(ngModel)]="email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@domain.com">
+                <div class="fv-plugins-message-container invalid-feedback"></div></div>
+                <div class="mb-7">
+                    <label class="required fw-bold fs-6">Role</label>
+                    <div class="d-flex fv-row">
+                        <div class="form-check form-check-custom form-check-solid">
+                            <input class="form-check-input me-3" name="role_id" [(ngModel)]="role_id" type="radio" [value]="1" id="kt_modal_update_role_option_0" checked="checked">
+                            <label class="form-check-label" for="kt_modal_update_role_option_0">
+                                <div class="fw-bolder text-gray-800">Administrator</div>
+                                <div class="text-gray-600">Best for business owners and company administrators</div>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- <div class="separator separator-dashed my-5"></div> -->
+                </div>
+            </div>
+            <div class="text-center pt-15">
+                <button type="reset" class="btn btn-light me-3" (click)="modal.dismiss()">Cancel</button>
+                <button type="submit" (click)="save()" class="btn btn-primary" data-kt-users-modal-action="submit">
+                    <span *ngIf="!(isLoading | async)" class="indicator-label">Registrar</span>
+                    <span *ngIf="isLoading | async" class="indicator-label">Please wait...
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
+                </button>
+            </div>
+        <div></div></form>
+    </div>
+</div>
